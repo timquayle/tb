@@ -1,0 +1,131 @@
+<html>
+    <head>
+       <title>Travel Dashboard</title>
+ 
+
+    </head>
+    <style>
+   <style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 400px;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+td form input{
+     background:none!important;
+     color:blue;
+     border:none; 
+     padding:0!important;
+     font: inherit;
+     border-bottom:1px solid blue; 
+     cursor: pointer;
+     display:inline-block;
+}
+   .links {
+    margin-left:600px;
+   }
+   .heading a{
+    margin-left:20px;
+   }
+   .heading *{
+    display:inline-block;
+   }
+   .bottom{
+      width:600px;
+      display:block;
+      margin-left:50px; 
+    }
+    .top{
+     margin-left:50px; 
+      width:600px;
+      display:block;
+    }
+    .heading {
+          
+           display: block;
+           vertical-align:top;
+          height:100px;
+           }
+    form 
+    {
+     margin: 0px auto;
+     width: 400;
+    }
+  </style>
+
+
+   <body>
+      <div class="heading"> 
+        <h1> Hello {{ username }}!</h1>
+          <div class="links">
+           <a href="/logout">Logout</a>
+         </div>
+    </div>
+      <div class="top">
+      <h2> Your trip Schedule</h2>
+       <table border="1">
+  
+ <thead>
+  <tr>
+    <th>Destination</th>
+    <th>Travel Start Date</th> 
+    <th>Travel End Date</th>
+    <th>Plan</th>
+   </tr>
+</thead>
+<tbody>  
+    {% for trip in trips %}
+  <tr>
+    <td> <a href=travels/destination/{{trip.id}}>{{ trip.Destination }}</a></td>
+    <td> {{ trip.Startdate }}</td>
+    <td> {{ trip.Enddate }}</td>
+    <td> {{ trip.Description}}    </td>
+    {% endfor %}
+ </tbody> 
+</table>
+ 
+     </div>
+   <div class="bottom">
+   <h2>Other User's Travel Plans</h2>
+    <table border="1">
+  
+ <thead>
+  <tr>
+    <th>Name</th>
+    <th>Destination</th>
+    <th>Travel Start Date</th> 
+    <th>Travel End Date</th>
+    <th>Do You want to Join?</th>
+  </tr>
+</thead>
+<tbody>  
+    {% for otrip in othertrips %}
+  <tr>
+    <td> {{ otrip.Tripuser.Name}}</td>
+    <td> <a href=travels/destination/{{otrip.id}}>{{otrip.Destination }}</a></td>
+    <td> {{ otrip.Startdate }}</td>
+    <td> {{ otrip.Enddate}}</td>
+    <td> <a href=/travels/join/{{otrip.id}}>join</a></td>
+    {% endfor %}
+ </tbody> 
+</table>
+
+    <a href='travels/add'>Add Travel Plan</a>
+    </div>
+    
+    </body>
+
+
+
+
+</html>

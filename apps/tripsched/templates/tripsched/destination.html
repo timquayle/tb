@@ -1,0 +1,51 @@
+<html>
+    <head>
+       <title>Destination</title>
+    </head>
+    <style>
+    .top{ 
+     margin-left:100px;
+     margin-bottom:50px;
+     margin-top:50px;
+     }
+     .bottom{ 
+     margin-left:100px;
+     }
+     .bottom a{
+      margin-left:20px;
+     }
+    .heading a{
+      margin-left:20px;
+    }
+    .heading {
+           margin-left:800px;
+           display: inline-block;
+           vertical-align:top;
+           }
+    form 
+    {
+     margin: 0px auto;
+     width: 400;
+    }
+  </style>
+
+
+   <body>
+      <div class="heading"> 
+       <a href="/">Home</a>
+       <a href="/logout">Logout</a>
+      </div>
+      <div class="top">
+       <h1> {{ trip.Destination }} </h1>
+       <h4> Planned By:  {% for p in plan %} {{p.Name}} {% endfor %} </h4>
+       <h4> Travel Date From:{{trip.Startdate}}</h4>
+       <h4> Travel Date To:{{trip.Enddate}}</h4>
+      </div>
+      <div class="bottom">
+      <h3> Other Users joining the trip: </h3>
+       {% for guest in guests %}
+       <p>  {{guest.Name}} </p>
+         {% endfor %}
+      </div>
+    </body>
+</html>

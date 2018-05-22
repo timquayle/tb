@@ -1,0 +1,49 @@
+<html>
+    <head>
+       <title>Add Plan</title>
+    </head>
+    <style>
+    h3 {
+      margin-left:500px;
+    }
+    .heading .links{
+      margin-left:800px;
+    }
+    .heading {
+          
+           display: inline-block;
+           vertical-align:top;
+           }
+    input {
+    
+           margin-right: 0px;
+           }
+    form 
+    {
+     margin: 0px auto;
+     width: 600;
+    }
+  </style>
+
+
+    <body>
+       <div class="heading"> 
+        <div class="links">
+        <a href="/">Home</a>
+       <a href="/logout">Logout</a>
+      </div>
+    </div>
+    {% for e in errorlist %}
+      <p>  {{e}}  </p>
+      {% endfor %}
+      <h3> Add a Trip </h3>
+    <form action='/travels/process_trip' method='POST'>
+    {% csrf_token %}
+    <p><label for="dest">Destination: </label><input type="text" name="destination" id='dest'></p>
+    <p><label for="desc">Description: </label><input type="text" name="description" id='desc'></p>
+    <p><label for="df">Travel Date From: </label><input type="date" name="datefrom" id='df'></p>
+    <p><label for="dt">Travel Date To: </label><input type="date" name="dateto" id='desc'></p>
+    <p><input type="submit" value="Add"></p>
+  </form>
+    </body>
+</html>
