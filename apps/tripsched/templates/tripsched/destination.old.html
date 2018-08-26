@@ -37,7 +37,7 @@
       </div>
       <div class="top">
        <h1> {{ trip.Destination }} </h1>
-       <h4> Planned By: {{trip.Tripuser.Name}} </h4>
+       <h4> Planned By:  {% for p in plan %} {{p.Name}} {% endfor %}</h4>
        <h4> Travel Date From:{{trip.Startdate}}</h4>
        <h4> Travel Date To:{{trip.Enddate}}</h4>
       </div>

@@ -1,2 +1,2 @@
-*.pvc
+*.pyc
 venv/

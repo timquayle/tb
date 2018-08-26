@@ -92,12 +92,12 @@ def loginchk(request):
       "loginerror": "Invalid Login or Password"         }
 
     return render(request,'tripsched/index.html',context)
-#renders the book review page 
+
 def newtrippage(request):
  
   return render(request,'tripsched/addtrip.html') 
 
-#processes the book review info, and puts us on the book that was just reviewed page
+
 def processtrip(request):
    if request.method=="POST":
     #due the validation on all of the inputs
@@ -140,17 +140,19 @@ def processtrip(request):
      
 def destinationpage(request,number):
   trip=Trips.objects.get(id=number)
-  plan= Trips.objects.raw("SELECT TRIPSCHED_TRIPS.id, TRIPSCHED_USERS.NAME FROM TRIPSCHED_TRIPS JOIN TRIPSCHED_USERS ON TRIPUSER_ID = TRIPSCHED_USERS.id \
-    WHERE TRIPSCHED_TRIPS.id = {0}".format(trip.id))
- 
-  guests= Trips.objects.raw("SELECT TRIPSCHED_TRIPS_GUESTS.id, TRIPSCHED_USERS.NAME FROM TRIPSCHED_TRIPS_GUESTS\
-    JOIN TRIPSCHED_USERS ON USERS_ID = TRIPSCHED_USERS.id \
-    WHERE TRIPSCHED_TRIPS_GUESTS.trips_id = {0}".format(trip.id))
+  #plan= Trips.objects.raw("SELECT TRIPSCHED_TRIPS.id, TRIPSCHED_USERS.NAME FROM TRIPSCHED_TRIPS JOIN TRIPSCHED_USERS ON TRIPUSER_ID = TRIPSCHED_USERS.id \
+  #  WHERE TRIPSCHED_TRIPS.id = {0}".format(trip.id))
+  guests=dir('Trips.Guests')
+  print guests
+  #guests= Trips.objects.raw("SELECT TRIPSCHED_TRIPS_GUESTS.id, TRIPSCHED_USERS.NAME FROM TRIPSCHED_TRIPS_GUESTS\
+  #  JOIN TRIPSCHED_USERS ON USERS_ID = TRIPSCHED_USERS.id \
+  #  WHERE TRIPSCHED_TRIPS_GUESTS.trips_id = {0}".format(trip.id))
   #guests = trip.Guests.all()
+  #guests= Trips.objects.filter(id=trip.id)
   context = {
   "trip": trip,
   "guests": guests,
-  "plan": plan
+  #"plan": plan
   
   }
   
@@ -161,6 +163,7 @@ def processjoin(request,number):
   this_trip = Trips.objects.get(id=number)
   this_user = userinfo.id
   this_trip.Guests.add(this_user)
+  return redirect('/')
 def validate(rp):
   #remember to add validation to login, i have to ask why validate login information? the more the precise the 
   #information returned, the more the hackers like it.
